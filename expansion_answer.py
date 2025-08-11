@@ -11,8 +11,11 @@ import umap
 # Load environment variables from .env file
 load_dotenv()
 
-openai_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=openai_key)
+# openai_key = os.getenv("OPENAI_API_KEY")
+# client = OpenAI(api_key=openai_key)
+
+gemini_api_key = os.getenv('GEMINI_API_KEY')
+client = OpenAI(base_url="https://generativelanguage.googleapis.com/v1beta/openai/", api_key=gemini_api_key)
 
 reader = PdfReader("data/microsoft-annual-report.pdf")
 pdf_texts = [p.extract_text().strip() for p in reader.pages]
@@ -80,7 +83,7 @@ retrieved_documents = results["documents"][0]
 #     print("\n")
 
 
-def augment_query_generated(query, model="gpt-3.5-turbo"):
+def augment_query_generated(query, model="gemini-2.5-flash"):
     prompt = """You are a helpful expert financial research assistant. 
    Provide an example answer to the given question, that might be found in a document like an annual report."""
     messages = [
