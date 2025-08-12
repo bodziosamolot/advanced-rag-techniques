@@ -37,6 +37,10 @@ from langchain.text_splitter import (
     SentenceTransformersTokenTextSplitter,
 )
 
+# There are two splitters
+# RecursiveCharacterTextSplitter - "dum splitter" that splits first by \n\n and if the length is still too large then uses \n until
+#    it reaches the defined chunk_size = 1000
+# SentenceTransformersTokenTextSplitter - split the text into chunks that fit the token window of the sentence transformer model that you would like to use.
 character_splitter = RecursiveCharacterTextSplitter(
     separators=["\n\n", "\n", ". ", " ", ""], chunk_size=1000, chunk_overlap=0
 )
