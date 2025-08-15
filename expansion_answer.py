@@ -107,6 +107,8 @@ def augment_query_generated(query, model="gemini-2.5-flash"):
 
 
 original_query = "What was the total profit for the year, and how does it compare to the previous year?"
+# hypothetical_answer is a hallucinated answer that will serve as an example for when we have the documents
+# that will serve as basis for generating a real answer
 hypothetical_answer = augment_query_generated(original_query)
 
 joint_query = f"{original_query} {hypothetical_answer}"
